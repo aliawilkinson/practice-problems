@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <style>
+        #display {
+            margin: auto;
+        }
+
+        .num-hold-div {
+            margin: auto;
+            width: 25vw;
+            background-color: lightpink;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        $(document).ready(initApp);
+
+        function initApp() {
+            printGrid(createSpiral(5));
+        }
+
+        function printGrid(grid) {
+            for (var printIt = 0; printIt < grid.length; printIt++) {
+                var rowDisplay = $("#display")
+                    .append($("<div>").append(grid[printIt]
+                            .join(' '))
+                        .addClass('num-hold-div'));
+                $("<br />").appendTo(rowDisplay);
+            }
+        }
+
+        function create2dGrid(size) {
+            let sizeIt = size;
+            const grid = [];
+            while (sizeIt--) grid.push(new Array(size));
+            return grid;
+        }
+
+        function createSpiral(n) {
+            const spiral = create2dGrid(n);
+            let currentNum = 1;
+            let row = 0;
+            let col = 0;
+            let dirRow = 0;
+            let dirCol = 1;
+
+            while (currentNum <= n * n) {
+                spiral[row][col] = currentNum++;
+                if (col + dirCol === n ||
+                    row + dirRow === n ||
+                    col + dirCol === -1 ||
+                    spiral[row + dirRow][col + dirCol]) {
+                    const tempDirRow = dirRow;
+                    dirRow = dirCol;
+                    dirCol = -tempDirRow;
+                }
+
+                row += dirRow;
+                col += dirCol;
+            }
+
+            return spiral;
+        }
+
+        printGrid(createSpiral(5));
+    </script>
+</head>
+
+<body>
+    <div id="display">
+    </div>
+</body>
+
+</html>
