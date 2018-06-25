@@ -1,0 +1,50 @@
+<<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <script>
+            var fractions = "5\n722/148+360/176\n978/1212+183/183\n358/472+301/417\n780/309+684/988\n258/840+854/686"
+
+            function fractionSum(fractions) {
+                fractions = fractions.split("\n");
+                var answers = "";
+                for (var i = 1; i < fractions.length; i++) {
+                    var fracArray = fractions[i].split("+");
+                    var frac1 = fracArray[0];
+                    var frac2 = fracArray[1];
+                    var preNums = frac1.split("/");
+                    var numerator1 = parseInt(preNums[0]);
+                    var denom1 = parseInt(preNums[1]);
+                    preNums = frac2.split("/");
+                    var numerator2 = parseInt(preNums[0]);
+                    var denom2 = parseInt(preNums[1]);
+                    var addedNum = (numerator1 * denom2) + (numerator2 * denom1);
+                    var addedDen = denom1 * denom2;
+                    var x = 1
+                    while (x++) {
+                        if (x > 2000) {
+                            break;
+                        }
+                        if (addedNum % x === 0 && addedDen % x === 0) {
+                            addedNum = addedNum / x;
+                            addedDen = addedDen / x;
+                        }
+                    }
+                    var reducedFrac = addedNum + "/" + addedDen + "\n";
+                    answers = answers + reducedFrac;
+                }
+                return answers;
+            }
+
+            fractionSum(fractions);
+        </script>
+    </body>
+
+    </html>

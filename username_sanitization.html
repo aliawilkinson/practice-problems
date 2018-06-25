@@ -1,0 +1,49 @@
+<<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <script>
+            var input = "1 ababaa";
+
+            function usernameDisparity(inputs) {
+                if (!Array.isArray(inputs)) {
+                    inputs = inputs.replace(/\s/g, "\n");
+                    inputs = inputs.split("\n");
+                }
+                var outputs = [];
+                var length = inputs[0];
+                if (inputs[0] === typeof string) {
+                    length = parseInt(inputs[0]);
+                }
+                for (var y = 1; y <= length; y++) {
+                    var input = inputs[y];
+                    var suffix = inputs[y];
+                    var totalLength = null;
+                    for (x = 0; x < input.length; x++) {
+                        for (i = 0; i < input.length; i++) {
+                            if (suffix[i] === input[i]) {
+                                totalLength += 1;
+                            } else {
+                                break;
+                            }
+                        }
+                        suffix = suffix.slice(1);
+                    }
+                    outputs.push(totalLength);
+                }
+                console.log(outputs);
+                return outputs;
+            }
+
+            usernameDisparity(input);
+        </script>
+    </body>
+
+    </html>
