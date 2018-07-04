@@ -33,3 +33,24 @@ function plusMinus(arr) {
     }
     return answers;
 }
+
+var majorityElement = function (nums) {
+    //find n/3 by dividing nums.length by 3
+    //find the number of times a number appears in the sequence
+    var targetFreq = Math.ceil(nums.length / 3);
+    var answers = [];
+    var numCount = null;
+    for (var i = 0; i < nums.length; i++) {
+        for (var x = 0; x < nums.length; x++) {
+            if (nums[x] == nums[i]) {
+                numCount++;
+            }
+
+        }
+        if (numCount++ > targetFreq && nums.indexOf(nums[i])) {
+            answers.push(nums[i]);
+        }
+        numCount = null;
+    }
+    return answers;
+};
