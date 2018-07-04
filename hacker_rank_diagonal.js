@@ -73,3 +73,39 @@ var twoSum = function (nums, target) {
         }
     }
 };
+
+var isPalindrome = function (head) {
+    let middlePointer = head
+    let lengthHead = 0
+    let pointerForLength = head
+
+    while (pointerForLength !== null) {
+        lengthHead = lengthHead + 1
+        pointerForLength = pointerForLength.next
+    }
+
+    for (let i = 0; i < Math.ceil(lengthHead / 2); i++) {
+        middlePointer = middlePointer.next
+    }
+
+    const reverseList = list => {
+        const iter = (h, acc) => {
+            if (h === null) return acc
+            let hNext = h.next
+            h.next = acc
+            return iter(hNext, h)
+        }
+        return iter(list, null)
+    }
+
+    let reversed = reverseList(middlePointer)
+
+    for (let i = 0; i < Math.floor(lengthHead / 2); i++) {
+        if (head.val !== reversed.val) return false
+        head = head.next
+        reversed = reversed.next
+    }
+
+    return true
+
+};
