@@ -54,3 +54,22 @@ var majorityElement = function (nums) {
     }
     return answers;
 };
+
+var twoSum = function (nums, target) {
+    var answer = [];
+    debugger;
+    for (var i = 0; i < nums.length; i++) {
+        for (var x = 0; x < nums.length; x++) {
+            if (i === x) {
+
+            } else {
+
+                var sum = nums[i] + nums[x];
+                if (sum === target) {
+                    answer.push(i, x);
+                    return answer;
+                }
+            }
+        }
+    }
+};
