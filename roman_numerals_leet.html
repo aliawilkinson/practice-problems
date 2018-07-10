@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roman Numerals</title>
+</head>
+
+<body>
+    <script>
+        var input = "MCMXCIV";
+        var romanToInt = function (s) {
+            let convertLetters = [];
+            s = s.split('');
+            for (let i = 0; i < s.length; i++) {
+                let currentLetter = s[i];
+                if (currentLetter === "I" && s[i + 1] === "V") {
+                    convertLetters.push(4);
+                    s.splice(i, 1);
+                    continue;
+                } else if (currentLetter === "I" && s[i + 1] === "X") {
+                    convertLetters.push(9);
+                    s.splice(i, 1);
+                    continue;
+                } else if (currentLetter === "X" && s[i + 1] === "L") {
+                    convertLetters.push(40);
+                    s.splice(i, 1);
+                    continue;
+                } else if (currentLetter === "X" && s[i + 1] === "C") {
+                    convertLetters.push(90);
+                    s.splice(i, 1);
+                    continue;
+                } else if (currentLetter === "C" && s[i + 1] === "D") {
+                    convertLetters.push(400);
+                    s.splice(i, 1);
+                    continue;
+                } else if (currentLetter === "C" && s[i + 1] === "M") {
+                    convertLetters.push(900);
+                    s.splice(i, 1);
+                    continue;
+                }
+                switch (currentLetter) {
+                    case "I":
+                        convertLetters.push(1);
+                        break;
+                    case "V":
+                        convertLetters.push(5);
+                        break;
+                    case "X":
+                        convertLetters.push(10);
+                        break;
+                    case "L":
+                        convertLetters.push(50);
+                        break;
+                    case "C":
+                        convertLetters.push(100);
+                        break;
+                    case "D":
+                        convertLetters.push(500);
+                        break;
+                    case "M":
+                        convertLetters.push(1000);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            while (convertLetters.length > 1) {
+                if (convertLetters[0] === convertLetters[1] || convertLetters[0] > convertLetters[1]) {
+                    let newNum = convertLetters[0] + convertLetters[1];
+                    convertLetters.splice(0, 2, newNum);
+                } else if (convertLetters[0] < convertLetters[1]) {
+                    let newNum = convertLetters[1] - convertLetters[0];
+                    convertLetters.splice(0, 2, newNum);
+                }
+            }
+            return convertLetters[0];
+        };
+        romanToInt(input);
+    </script>
+
+</body>
+
+</html>
