@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bracket Sorting</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {string} s
+         * @return {boolean}
+         */
+        var input = "(([]){})";
+        var isValid = function (s) {
+            if (s.length % 2 === 1) { //if s is odd, return false
+                return false;
+            };
+            if (s === "") { //if s is an empty string, return true
+                return true;
+            }
+            var copy = s.slice();
+            var partners = {
+                '[': ']',
+                '{': '}',
+                '(': ')',
+                ']': '[',
+                '}': '{',
+                ')': '('
+            }
+            for (let i = 0; i < s.length; i++) {
+                switch (s[i]) {
+                    case '(':
+                        continue;
+                    case ')':
+                        continue;
+                    case '{':
+                        continue;
+                    case '}':
+                        continue;
+                    case '[':
+                        continue;
+                    case ']':
+                        continue;
+                    default:
+                        return false;
+                }
+            }
+            var countBetween = null;
+            pivotParensIndex = 0;
+            s = s.split("");
+            debugger;
+            //need to start counting from the end, find pattern to grab pairs
+            while (s.length !== 0 && countBetween === null) {
+                for (let x = 0; x < s.length; x++) {
+                    if (s[pivotParensIndex] === partners[s[x + 1]]) { //happens when partner is found
+                        s.splice([x + 1], 1);
+                        s.splice(pivotParensIndex, 1);
+                        if (countBetween % 2 === 1) {
+                            return false
+                        } else {
+                            continue;
+                        }
+                    } else {
+                        countBetween++;
+                    }
+                }
+                if (s[0] != partners[s[1]] && countBetween === s.length) {
+                    return false;
+                }
+                countBetween = null;
+            }
+            return true;
+        };
+        isValid(input);
+        document.writeln(isValid(input));
+    </script>
+
+</body>
+
+</html>
