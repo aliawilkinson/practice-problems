@@ -14,15 +14,29 @@
          * @param {string} s
          * @return {boolean}
          */
-        var input = "(([]){})";
+        var input = {
+            // "(([]){})": true,
+            // "([)]": false,
+            // "(]": false,
+            // "()[]{}": true,
+            // "()": true,
+            // "{}{{}}": true,
+            // "asdjag{}[]": false,
+            // "[()](())": true,
+            // "[(({})}]": false,
+            // "[({(())}[()])]": true,
+            "{}[{}]((){})(){}": true
+        };
         var isValid = function (s) {
-            if (s.length % 2 === 1) { //if s is odd, return false
+            if (s.length % 2 === 1) {
                 return false;
             };
-            if (s === "") { //if s is an empty string, return true
+            if (s === "") {
                 return true;
-            }
-            var copy = s.slice();
+            };
+            if (!/(\(|\)|\{|\}|\[|\])/.test(s)) {
+                return false;
+            };
             var partners = {
                 '[': ']',
                 '{': '}',
@@ -31,52 +45,41 @@
                 '}': '{',
                 ')': '('
             }
-            for (let i = 0; i < s.length; i++) {
-                switch (s[i]) {
-                    case '(':
-                        continue;
-                    case ')':
-                        continue;
-                    case '{':
-                        continue;
-                    case '}':
-                        continue;
-                    case '[':
-                        continue;
-                    case ']':
-                        continue;
-                    default:
-                        return false;
-                }
-            }
-            var countBetween = null;
-            pivotParensIndex = 0;
             s = s.split("");
-            debugger;
-            //need to start counting from the end, find pattern to grab pairs
-            while (s.length !== 0 && countBetween === null) {
-                for (let x = 0; x < s.length; x++) {
-                    if (s[pivotParensIndex] === partners[s[x + 1]]) { //happens when partner is found
-                        s.splice([x + 1], 1);
-                        s.splice(pivotParensIndex, 1);
-                        if (countBetween % 2 === 1) {
-                            return false
-                        } else {
-                            continue;
+            while (s.length !== 0) {
+                for (let x = s.length; x >= 0; x--) {
+                    if (s.length === 0) {
+                        return true;
+                    }
+                    if (s[0] === partners[s[s.length - 1]] || s[0] === partners[s[x]]) { //happens when partner is found
+                        let sCopy = s.slice(1, x);
+                        if (sCopy.length % 2 === 1 && sCopy[0] !== s[0]) {
+                            return false;
                         }
-                    } else {
-                        countBetween++;
+                        s.splice([x], 1);
+                        s.splice(0, 1);
+                    }
+                    if (s[1] === partners[s[0]]) {
+                        s.splice(0, 2);
+                        x++;
                     }
                 }
-                if (s[0] != partners[s[1]] && countBetween === s.length) {
+                if (s.length === 2 && s[0] !== partners[s[1]]) {
                     return false;
+                } else if (s.length !== 0) {
+                    return false;
+                } else {
+                    return true;
                 }
-                countBetween = null;
-            }
-            return true;
+            };
         };
-        isValid(input);
-        document.writeln(isValid(input));
+        for (key in input) {
+            if (input[key] === isValid(key)) {
+                console.log('it works', key);
+            } else {
+                console.log('problem with', key);
+            }
+        }
     </script>
 
 </body>
