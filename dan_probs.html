@@ -90,6 +90,41 @@ output:
             console.log('final word', wordArray);
             return wordArray;
         }
+        /*
+write a function, given a word, that returns an object
+with the count of vowels and consonants in it
+input: 
+    'stupify'
+output:
+    {
+       vowels: 2,
+       consonants: 5
+    }
+*/
+        function countLetters(word) {
+            var answer = {};
+            var consonants = 0;
+            var vowels = 0;
+            for (var i = 0; i < word.length; i++) {
+                if (word[i].match(/[a-z]/i)) {
+                    switch (word[i]) {
+                        case 'a':
+                        case 'e':
+                        case 'i':
+                        case 'o':
+                        case 'u':
+                            vowels++;
+                            continue;
+                        default:
+                            consonants++;
+                    }
+                }
+            }
+            answer = { vowels: vowels, consonants: consonants };
+            return answer
+
+
+        }
     </script>
 </body>
 
