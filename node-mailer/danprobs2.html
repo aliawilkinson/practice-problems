@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dan Probs 2</title>
+</head>
+
+<body>
+    <script>
+        var div = 4
+        var arr = [16, 8, 24, 100]
+
+
+        function findNonCommonDivisor(divisor, numbers) {
+            for (var i = 0; i < numbers.length; i++) {
+                if (Number.isInteger(numbers[i] / divisor)) {
+                    continue;
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        }
+        findNonCommonDivisor(div, arr);
+
+        var string = 'four score and seven years ago, our forefathers brought forth upon this continent a new nation';
+        var interval = 10;
+        function changeStrToColumn(sourceString, columnWidth) {
+            var answer = [];
+            debugger;
+            for (columnWidth; columnWidth < sourceString.length; columnWidth + 10) {
+                console.log(sourceString.slice(0, columnWidth));
+            }
+        }
+        changeStrToColumn(string, interval);
+
+    </script>
+</body>
+
+</html>
