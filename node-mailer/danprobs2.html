@@ -37,6 +37,21 @@
         }
         changeStrToColumn(string, interval);
 
+        //find common letters in a string
+
+        var numJewelsInStones = function (J, S) {
+            var output = 0;
+            for (var i = 0; i < J.length; i++) {
+                for (var x = 0; x < S.length; x++) {
+                    if (J[i] === S[x]) {
+                        output += 1;
+                        continue;
+                    }
+                }
+            }
+            return output;
+        };
+
     </script>
 </body>
 
