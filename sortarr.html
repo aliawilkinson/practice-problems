@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sort Array</title>
+</head>
+
+<body>
+    <script>
+        var test = [1, 2, 3, 4];
+        var sortArrayByParity = function (A) {
+            var result = {
+                odd: [],
+                even: []
+            };
+            for (var i = 0; i < A.length; i++) {
+                if (A[i] % 2 === 1) {
+                    result.odd.unshift(A[i])
+                } else {
+                    result.even.push(A[i])
+                }
+            }
+            result.odd.sort();
+            result.even.sort();
+            result = result.even.concat(result.odd);
+            return result;
+        };
+        console.log(sortArrayByParity(test));
+
+    </script>
+</body>
+
+</html>
