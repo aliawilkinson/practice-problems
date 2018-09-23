@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Morse Code</title>
+</head>
+
+<body>
+
+    <!-- html -->
+    <div id="main-cont">
+    </div>
+    <!-- end html -->
+    <script>
+        /**
+  * @param {string[]} words
+  * @return {number}
+  */    var answer = null;
+        var uniqueMorseRepresentations = function (words) {
+            //if empty array, return 0
+            if (words === []) {
+                return 0;
+            }
+            //if only one element, return 1
+            if (words.length === 1) {
+                return 1;
+            }
+            //storage variable for initial conversion
+            var conversion = [];
+            //hash table for speed in conversion of letters to morse code
+            var morseSymb = {
+                a: ".-",
+                b: "-...",
+                c: "-.-.",
+                d: "-..",
+                e: ".",
+                f: "..-.",
+                g: "--.",
+                h: "....",
+                i: "..",
+                j: ".---",
+                k: "-.-",
+                l: ".-..",
+                m: "--",
+                n: "-.",
+                o: "---",
+                p: ".--.",
+                q: "--.-",
+                r: ".-.",
+                s: "...",
+                t: "-",
+                u: "..-",
+                v: "...-",
+                w: ".--",
+                x: "-..-",
+                y: "-.--",
+                z: "--.."
+            }
+            //iterate through input array of strings
+            for (var it = 0; it < words.length; it++) {
+                //storage variable for new word
+                var morseWord = "";
+                //iterate through letters in new word
+                for (var xt = 0; xt < words.length; xt++) {
+                    var morseLetter = morseSymb[words[it][xt]]
+                    morseWord += morseSymb[words[it][xt]];
+                }
+                //add new converted morse word to answer storage variable, named conversion
+                conversion.push(morseWord);
+            }
+            //make sure alike values are next to eachother
+            conversion.sort();
+            //create storage variable to count transformations
+            var numOfTransformations = 1;
+            //iterate through array with morse values
+            for (var it = 0; it < conversion.length; it++) {
+                //if the current string is the same as the related string, add a transformation
+                if (conversion[it] === conversion[it + 1]) {
+                    numOfTransformations++;
+                }
+            }
+            //return the number of transformations
+            console.log(conversion);
+            console.log(numOfTransformations);
+            return numOfTransformations;
+        };
+        //set answer equal to the result of this function 
+        answer = uniqueMorseRepresentations(["rwjje", "aittjje", "auyyn", "lqtktn", "lmjwn"]);
+        //put the answer on the dom using javascript
+        var createAnswerDisplay = function () {
+            var para = document.createElement("p");
+            var node = document.createTextNode("This is the answer: " + answer);
+            para.appendChild(node);
+
+            var element = document.getElementById("main-cont");
+            element.appendChild(para);
+        }
+
+        createAnswerDisplay();
+
+
+
+    </script>
+
+</body>
+
+</html>
