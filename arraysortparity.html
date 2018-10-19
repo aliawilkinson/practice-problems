@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sort by Parity</title>
+</head>
+
+<body>
+    <script>
+        var A = [4, 2, 5, 7];
+        var sortArrayByParityII = function (A) {
+            var indecies = { even: [], odd: [] };
+            var values = { even: [], odd: [] };
+            for (var i = 0; i < A.length; i++) {
+                if (A[i] % 2 === i % 2) {
+                    continue;
+                } else {
+                    if (A[i] % 2 === 0) {
+                        values.even.push(A[i]);
+                        A[i] = null;
+                    }
+                    if (A[i] % 2 === 1) {
+                        values.odd.push(A[i]);
+                        A[i] = null;
+                    }
+                    if (i % 2 === 0) {
+                        indecies.even.push(i);
+                        A[i] = null;
+                    }
+                    if (i % 2 === 1) {
+                        indecies.odd.push(i);
+                        A[i] = null;
+                    };
+                };
+            };
+            for (var x = 0; x < indecies.even.length; x++) {
+                A[indecies.even[x]] = values.even[x];
+                A[indecies.odd[x]] = values.odd[x];
+            }
+            return A;
+        }
+        sortArrayByParityII(A);
+    </script>
+</body>
+
+</html>
