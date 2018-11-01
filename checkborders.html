@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Check Island Borders</title>
+</head>
+
+<body>
+    <script>
+
+        var grid = [[0, 0, 1]];
+
+        var islandPerimeter = function (grid) {
+            var perimeter = 0;
+            for (var x = 0; x < grid.length; x++) {
+                for (var y = 0; y <= grid[x].length; y++) {
+                    if (grid[x][y] == 1) {
+                        //up
+                        if (grid[x - 1] == undefined || grid[x - 1][y] == 0) {
+                            perimeter++;
+                        }
+                        //down
+                        if (grid[x + 1] == undefined || grid[x + 1][y] == 0) {
+                            perimeter++;
+                        }
+                        //right
+                        if (grid[x][y + 1] == undefined || grid[x][y + 1] == 0) {
+                            perimeter++;
+                        }
+                        //left
+                        if (grid[x][y - 1] == undefined || grid[x][y - 1] == 0) {
+                            perimeter++;
+                        }
+                    }
+                }
+            }
+            document.writeln(perimeter);
+            console.log(perimeter);
+            return perimeter;
+        };
+        islandPerimeter(grid);
+    </script>
+</body>
+
+</html>
