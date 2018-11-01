@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Self Dividing Numbers</title>
+</head>
+
+<body>
+    <script>
+        /**
+ * @param {number} left
+ * @param {number} right
+ * @return {number[]}
+ */
+        //create store for answer
+        //store original first value (left)
+        //while original value store is less than or equal to the last number
+        //store the individual numbers in an array
+        //check through that array 
+        //if the original number is not divisible, move on to next number
+        //if the original number to check is divisible by that number, continue
+        //if the original number is divisible by that number and is in the last position
+        //push number to answer array
+        //increment number to Check
+        //return answer array when every number has been checked
+
+        var left = 10;
+        var right = 22;
+
+        var selfDividingNumbers = function (left, right) {
+            var answer = [];
+            var numCheck = left;
+            while (numCheck <= right) {
+                var soloNums = numCheck;
+                soloNums = soloNums.toString().split("");
+                for (var i = 0; i < soloNums.length; i++) {
+                    if (numCheck % soloNums[i] != 0 || soloNums[i] == 0) {
+                        break;
+                    }
+                    if (numCheck % soloNums[i] == 0 && i + 1 == soloNums.length) {
+                        answer.push(numCheck);
+                    }
+                }
+                numCheck++;
+            }
+            return answer;
+        };
+
+        selfDividingNumbers(left, right);
+    </script>
+</body>
+
+</html>
