@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Divide No Division</title>
+</head>
+
+<body>
+
+    <script>
+        //divide without division
+        var testDividend = -2147483648;
+        var testDivisor = -1;
+
+        var divide = function (dividend, divisor) {
+            var counter = 0;
+            var numLimit = Math.pow(2, 31) - 1;
+            var signs = {
+                dividend: 1,
+                divisor: 1
+            }
+            if (dividend < 0) {
+                signs.dividend = -1;
+            }
+            if (divisor < 0) {
+                signs.divisor = -1;
+            }
+            divisor = Math.abs(divisor);
+            dividend = Math.abs(dividend);
+            while (dividend >= divisor) {
+                dividend = dividend - divisor;
+                counter++;
+            };
+            var finalSign = signs.dividend * signs.divisor;
+            counter = counter * finalSign
+            if (counter == 2147483648) {
+                return 2147483647;
+            }
+            return counter;
+        };
+
+        divide(testDividend, testDivisor);
+    </script>
+
+</body>
+
+</html>
