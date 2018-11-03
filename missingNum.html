@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Missing Num</title>
+</head>
+
+<body>
+    <script>
+        //find missing num in 1-100
+        var numToPluck = Math.floor(Math.random() * 100) + 1;
+        var range = [];
+        while (range.length - 1 < 100) {
+            range.push(range.length + 1);
+        }
+        range.splice(numToPluck - 1, 1);
+        console.log(range);
+
+        function missingNum(range) {
+            for (var i = 0; i < range.length; i++) {
+                if (range[i] + 1 === range[i + 1]) {
+                    continue;
+                } else {
+                    console.log(range[i] + 1, numToPluck);
+                    return range[i] + 1;
+                }
+            }
+            console.log(range[range.length + 1]);
+            return range[range.length + 1];
+        }
+
+        missingNum(range);
+
+    </script>
+</body>
+
+</html>
