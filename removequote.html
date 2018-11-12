@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>remove quotes</title>
+</head>
+
+<body>
+    <script>
+        var tags = ["get unready with me", "night time routine", "skincare routine", "get unready with me korean", "korean skincare", "drunk elephant night kit", "teacher night routine", "teacher night time routine", "nighttime routine", "get unready with me night routine", "get unready", "night time", "my skincare routine", "korean skincare routine", "maya lee", "night routine", "night routine 2018", "bedtime routine", "evening routine", "my night routine", "night skincare routine", "evening routine 2018", "getting ready for bed"];
+        function removeQuotes(arr) {
+            debugger;
+            for (var i = 0; i < arr.length; i++) {
+                for (var x = 0; x < arr[i].length; x++) {
+                    if (arr[i][x] === '"') {
+                        arr[i][x] = str.replace('"', 0);
+                    }
+                }
+            }
+            return arr;
+        }
+
+        removeQuotes(tags);
+        console.log(tags);
+    </script>
+</body>
+
+</html>
