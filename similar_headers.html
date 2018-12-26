@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Similar Headers</title>
+</head>
+<body>
+            <h2>This is meant to check similarities between two arrays of strings.</h2>
+            <input type="text"/>
+            <input type="text" />
+            <button>Check</button>
+    <script>
+        function checkHeaders(ar1,ar2){
+        var passed = true;
+        for (i = 0; i < ar1.length; i++){
+            if(ar1[i] != ar2[i]){
+                passed=false;
+                console.log('not same, ar1 val, num: ', ar1[i],i, 'ar2 val, num: ', ar2[i], i);   
+                } else {
+                console.log('same');
+                }
+            }
+        console.log('passed',passed);
+        }
+    </script>
+</body>
+</html>
